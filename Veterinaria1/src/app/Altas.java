@@ -1,10 +1,8 @@
-package gui;
+package app;
 
 
-import gui.Principal;
-import domain.Mascota;
-import domain.Cliente;
-import java.awt.Panel;
+import app.Principal;
+import domain.*;
 import javax.swing.*;
 
 
@@ -458,7 +456,7 @@ public class Altas extends javax.swing.JFrame {
                 .addGroup(jPanelMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SpanelLayout = new javax.swing.GroupLayout(Spanel);
@@ -545,9 +543,11 @@ public class Altas extends javax.swing.JFrame {
             {
                 Cliente cliente = new Cliente(txtNombreCliente.getText(), txtApaterno.getText(), txtAmaterno.getText(), txtColonia.getText(), txtMunicipio.getText(), Integer.parseInt(txtCp.getText()), txtNoExterior.getText(), txtNoInterior.getText(), Long.parseLong(txtTelefono.getText()));
                 Mascota mascota = new Mascota(Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtNombreMascota.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
+                Veterinaria vet = new Veterinaria();
+                
                 cliente.agregarMascota(mascota);
+                vet.agregarCliente(cliente);
 
-                // falta agregar cliente a la veterinaria.
                 limpiarTextFields(jPanelMascota);
                 JOptionPane.showMessageDialog(null,"¡Registro ingresado correctamente!"); 
             }

@@ -17,7 +17,7 @@ public class Cliente {
     private String noExterior;
     private String noInterior;
     private long telefono;
-    private List<Mascota> mascotas;
+    private Set<Mascota> mascotas;
 
     private Cliente() {
         this.IdCliente = ++Cliente.contadorClientes;
@@ -34,7 +34,7 @@ public class Cliente {
         this.noExterior = noExterior;
         this.noInterior = noInterior;
         this.telefono = telefono;
-        this.mascotas = new ArrayList();
+        this.mascotas = new HashSet();
     }
 
     // constructor para buscar cliente.
@@ -116,11 +116,11 @@ public class Cliente {
         this.telefono = telefono;
     }
         
-    public List<Mascota> getMascotas() {
+    public Set<Mascota> getMascotas() {
         return mascotas;
     }
 
-    public void setMascotas(List<Mascota> mascotas) {
+    public void setMascotas(Set<Mascota> mascotas) {
         this.mascotas = mascotas;
     }
     

@@ -27,4 +27,20 @@ public class Veterinaria {
             });
         });
     }
+    
+    public Set<Mascota> busquedaMascotas(Cliente clienteBus){
+        
+        Set<Mascota> mascotasCli = new HashSet();
+        
+        this.clientes.forEach(elemento->{
+            if(elemento.getNombre().equals(clienteBus.getNombre()) &&
+                    elemento.getApellidoPaterno().equals(clienteBus.getApellidoPaterno()) &&
+                    elemento.getApellidoMaterno().equals(clienteBus.getApellidoMaterno()) )
+            {
+                elemento.getMascotas().addAll(mascotasCli);
+            }
+        });
+        
+        return mascotasCli;
+    }
 }

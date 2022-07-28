@@ -1,8 +1,8 @@
-package gui;
+package app;
 
 
 import domain.*;
-import gui.Principal;
+import app.Principal;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -250,6 +250,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
         {
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
             Veterinaria vet = new Veterinaria();
+            
             vet.busquedaMascotas(cliente);
             
         }
