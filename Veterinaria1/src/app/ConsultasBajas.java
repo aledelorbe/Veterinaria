@@ -3,8 +3,8 @@ package app;
 
 import domain.*;
 import app.Principal;
+import java.util.Set;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
 public class ConsultasBajas extends javax.swing.JFrame {
@@ -251,7 +251,11 @@ public class ConsultasBajas extends javax.swing.JFrame {
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
             Veterinaria vet = new Veterinaria();
             
-            vet.busquedaMascotas(cliente);
+            Set<Mascota> mascotas = vet.busquedaMascotas(cliente);
+            
+            mascotas.forEach(elemento->{
+                System.out.println(elemento);
+            });
             
         }
         
@@ -259,32 +263,25 @@ public class ConsultasBajas extends javax.swing.JFrame {
         
         
         
-        int posicion=Principal.pet.busqueda_mascota( Integer.parseInt( txtNombre.getText() ));
-        
-        if(posicion!=-1)
-        {
-            DefaultTableModel modelo;
-            modelo= (DefaultTableModel)jTable1.getModel();
-            Object[] fila=new Object[3];
-            
-            Limpiar_txt lp=new Limpiar_txt();
+      
+//        DefaultTableModel modelo;
+//        modelo= (DefaultTableModel)jTable1.getModel();
+//        Object[] fila=new Object[3];
+//
+//        Limpiar_txt lp=new Limpiar_txt();
+//
+//        fila[0]=Principal.pet.mascotas.get(posicion).getNombre();
+//        fila[1]=Principal.pet.mascotas.get(posicion).getRaza();
+//        fila[2]=Principal.pet.mascotas.get(posicion).getGenero();
+//
+//        modelo.addRow(fila);  
+//        lp.limpiar_texto(SpanelBuscar);
 
-            fila[0]=Principal.pet.mascotas.get(posicion).getNombre();
-            fila[1]=Principal.pet.mascotas.get(posicion).getRaza();
-            fila[2]=Principal.pet.mascotas.get(posicion).getGenero();
-
-            modelo.addRow(fila);  
-            lp.limpiar_texto(SpanelBuscar);
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"¡No se encontro a tu animalito :( !");
-        }
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBajaActionPerformed
-        Principal.pet.eliminar_mascota( Integer.parseInt( txtNombre.getText() ));   
-        //Limpiar_txt lp=new Limpiar_txt();  
+//        Principal.pet.eliminar_mascota( Integer.parseInt( txtNombre.getText() ));   
+//        //Limpiar_txt lp=new Limpiar_txt();  
     }//GEN-LAST:event_txtBajaActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -310,7 +307,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
   
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bajas().setVisible(true);
+                new ConsultasBajas().setVisible(true);
             }
         });
     }

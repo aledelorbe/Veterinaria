@@ -2,6 +2,7 @@
 package app;
 
 import domain.*;
+import java.util.Set;
 
 public class main {
     public static void main(String[] args) {
@@ -28,5 +29,18 @@ public class main {
         cliente1.eliminarMascota(mascota1);
         vet.mostrarClientes();
        
+        // busqueda.
+        System.out.println("-----------------------------");
+        String nombre = "Alejandro";
+        String paterno = "Granados";
+        String materno = "bello";
+        
+        Cliente cliente4 = new Cliente(nombre, paterno, materno);
+        Set<Mascota> mascotasCli = vet.busquedaMascotas(cliente4);
+        
+        mascotasCli.forEach(elemento->{
+            System.out.println(elemento);
+        });
+        
     }
 }

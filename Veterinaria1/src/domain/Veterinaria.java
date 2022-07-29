@@ -37,8 +37,11 @@ public class Veterinaria {
                     elemento.getApellidoPaterno().equals(clienteBus.getApellidoPaterno()) &&
                     elemento.getApellidoMaterno().equals(clienteBus.getApellidoMaterno()) )
             {
-                elemento.getMascotas().addAll(mascotasCli);
+                elemento.getMascotas().forEach(mascota->{
+                    mascotasCli.add(mascota);
+                });
             }
+            
         });
         
         return mascotasCli;

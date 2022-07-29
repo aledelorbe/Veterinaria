@@ -5,7 +5,6 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-//        this.setUndecorated(true);
         this.setLocationRelativeTo(null); 
     }
  
