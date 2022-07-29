@@ -263,16 +263,14 @@ public class ConsultasBajas extends javax.swing.JFrame {
                     5454, "mz", "casa", 4546848);
             cliente1.agregarMascota(mascota1);
             cliente1.agregarMascota(mascota2);
-            Veterinaria vet = new Veterinaria();
-            vet.agregarCliente(cliente1);
+            Principal.vet.agregarCliente(cliente1);
             
-            
+            Principal.vet.mostrarClientes();
             
             DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
-//            Veterinaria vet = new Veterinaria();
             
-            Set<Mascota> mascotas = vet.busquedaMascotas(cliente);
+            Set<Mascota> mascotas = Principal.vet.busquedaMascotas(cliente);
             
             if(mascotas.isEmpty())
                 JOptionPane.showMessageDialog(null,"Esta persona no cuenta con mascotas registradas en ese lugar.");
@@ -294,8 +292,22 @@ public class ConsultasBajas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBajaActionPerformed
-//        Principal.pet.eliminar_mascota( Integer.parseInt( txtNombre.getText() ));   
-//        //Limpiar_txt lp=new Limpiar_txt();  
+
+        if(txtNombre.getText().isEmpty() || txtPaterno.getText().isEmpty() || txtMaterno.getText().isEmpty() )
+            JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
+        else if ( jTableMascotas.getSelectedRow() == -1 )
+            JOptionPane.showMessageDialog(null,"Debe seleccionar una fila de la tabla.");
+        else
+        {
+            Mascota mascota = new Mascota((String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 0), (String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 1), (String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 2));
+            Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
+//            Veterinaria vet = new Veterinaria();
+            Principal.vet.eliminarMascota(cliente, mascota);
+            
+            
+            DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
+            modelo.removeRow(jTableMascotas.getSelectedRow());
+        }
     }//GEN-LAST:event_txtBajaActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

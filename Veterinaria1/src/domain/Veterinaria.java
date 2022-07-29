@@ -15,6 +15,8 @@ public class Veterinaria {
         this.clientes = clientes;
     }
     
+    
+    
     public void agregarCliente(Cliente cliente){
         this.clientes.add(cliente);
     }
@@ -45,5 +47,33 @@ public class Veterinaria {
         });
         
         return mascotasCli;
+    }
+    
+    public void eliminarMascota(Cliente clienteBus, Mascota mascotaBus){
+        
+        Mascota mascotaEli = null;
+        
+        this.clientes.forEach(elemento->{
+            System.out.println("iteracion");
+            if(elemento.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    elemento.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    elemento.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
+            {
+                System.out.println("elemento = " + elemento);
+                
+                elemento.getMascotas().forEach(mascota->{
+                    if(mascota.getNombre().equalsIgnoreCase(mascotaBus.getNombre()) &&
+                    mascota.getEspecie().equalsIgnoreCase(mascotaBus.getEspecie()) &&
+                    mascota.getDescripcion().equalsIgnoreCase(mascotaBus.getDescripcion()) )
+                    {
+//                        mascotaEli = mascota;
+                        System.out.println("mascota " + mascota);
+                    
+                    }
+                });
+            }
+            
+        });
+        
     }
 }

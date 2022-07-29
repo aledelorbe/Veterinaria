@@ -1,8 +1,12 @@
 package app;
 
+import domain.Veterinaria;
+
 
 public class Principal extends javax.swing.JFrame {
 
+    public static Veterinaria vet = new Veterinaria();
+    
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null); 

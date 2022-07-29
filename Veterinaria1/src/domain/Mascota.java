@@ -1,13 +1,10 @@
 package domain;
 
 
-import java.util.ArrayList;
 
 
 public class Mascota {
-    private static int contadorMascotas;
     
-    private final int IdMascota;
     private int edad;
     private String genero;
     private String nombre;
@@ -15,12 +12,13 @@ public class Mascota {
     private String especie;
     private String descripcion;
 
-    private Mascota() {
-        this.IdMascota = ++Mascota.contadorMascotas;
+    public Mascota(String nombre, String especie, String descripcion) {
+        this.nombre = nombre;
+        this.especie = especie;
+        this.descripcion = descripcion;
     }
 
     public Mascota(int edad, String genero, String nombre, String raza, String especie, String descripcion) {
-        this();
         this.edad = edad;
         this.genero = genero;
         this.nombre = nombre;
@@ -79,7 +77,7 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return "Mascota{" + "IdMascota=" + IdMascota + ", edad=" + edad + ", genero=" + genero + ", nombre=" + nombre + ", raza=" + raza + ", especie=" + especie + ", descripcion=" + descripcion + '}';
+        return "Mascota{" + "edad=" + edad + ", genero=" + genero + ", nombre=" + nombre + ", raza=" + raza + ", especie=" + especie + ", descripcion=" + descripcion + '}';
     }
     
     

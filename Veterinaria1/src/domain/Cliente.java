@@ -5,9 +5,7 @@ import java.util.*;
 
 
 public class Cliente {
-    private static int contadorClientes;
 
-    private int IdCliente;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -19,12 +17,7 @@ public class Cliente {
     private long telefono;
     private Set<Mascota> mascotas;
 
-    private Cliente() {
-        this.IdCliente = ++Cliente.contadorClientes;
-    }
-
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String colonia, String municipio, int cp, String noExterior, String noInterior, long telefono) {
-        this();
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -126,7 +119,7 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return "Cliente{" + "IdCliente=" + IdCliente + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", colonia=" + colonia + ", municipio=" + municipio + ", cp=" + cp + ", noExterior=" + noExterior + ", noInterior=" + noInterior + ", telefono=" + telefono + ", mascotas=" + mascotas + '}';
+        return "Cliente{" + "nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", colonia=" + colonia + ", municipio=" + municipio + ", cp=" + cp + ", noExterior=" + noExterior + ", noInterior=" + noInterior + ", telefono=" + telefono + ", mascotas=" + mascotas + '}';
     }
 
     public void agregarMascota(Mascota mascota){
