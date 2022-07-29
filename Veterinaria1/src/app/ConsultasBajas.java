@@ -16,6 +16,12 @@ public class ConsultasBajas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); 
     }
     
+    public void limpiarTabla(){
+        DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
+        
+        while (modelo.getRowCount() > 0)
+            modelo.removeRow(0);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -262,8 +268,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
             
             
             
-//            DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
-            
+            DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
 //            Veterinaria vet = new Veterinaria();
             
@@ -273,49 +278,19 @@ public class ConsultasBajas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Esta persona no cuenta con mascotas registradas en ese lugar.");
             else
             {
+                limpiarTabla();
                 List<Mascota> listaMascotas = new ArrayList<Mascota>(mascotas);
-            
-            
-            
-            
-                DefaultTableModel modelo;
-                modelo= (DefaultTableModel)jTableMascotas.getModel();
                 Object[] fila=new Object[3];
 
                 for (int i = 0; i < mascotas.size(); i++) {
-    //                jTableMascotas.setValueAt(listaMascotas.get(i).getNombre(), i, 0);
-    //                jTableMascotas.setValueAt(listaMascotas.get(i).getEspecie(), i, 1);
-    //                jTableMascotas.setValueAt(listaMascotas.get(i).getDescripcion(), i, 2);
-
                     fila[0]=listaMascotas.get(i).getNombre();
                     fila[1]=listaMascotas.get(i).getRaza();
                     fila[2]=listaMascotas.get(i).getGenero();
 
                     modelo.addRow(fila); 
-                
-            }
-            
+                }
             }
         }
-        
-        
-        
-        
-        
-      
-//        DefaultTableModel modelo;
-//        modelo= (DefaultTableModel)jTable1.getModel();
-//        Object[] fila=new Object[3];
-//
-//        Limpiar_txt lp=new Limpiar_txt();
-//
-//        fila[0]=Principal.pet.mascotas.get(posicion).getNombre();
-//        fila[1]=Principal.pet.mascotas.get(posicion).getRaza();
-//        fila[2]=Principal.pet.mascotas.get(posicion).getGenero();
-//
-//        modelo.addRow(fila);  
-//        lp.limpiar_texto(SpanelBuscar);
-
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBajaActionPerformed
@@ -324,7 +299,6 @@ public class ConsultasBajas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBajaActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

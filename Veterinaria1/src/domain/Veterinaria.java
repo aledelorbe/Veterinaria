@@ -33,9 +33,9 @@ public class Veterinaria {
         Set<Mascota> mascotasCli = new HashSet();
         
         this.clientes.forEach(elemento->{
-            if(elemento.getNombre().equals(clienteBus.getNombre()) &&
-                    elemento.getApellidoPaterno().equals(clienteBus.getApellidoPaterno()) &&
-                    elemento.getApellidoMaterno().equals(clienteBus.getApellidoMaterno()) )
+            if(elemento.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    elemento.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    elemento.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
             {
                 elemento.getMascotas().forEach(mascota->{
                     mascotasCli.add(mascota);
