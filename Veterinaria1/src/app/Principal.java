@@ -19,6 +19,7 @@ public class Principal extends javax.swing.JFrame {
         btnBajasConsulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setText("Bienvenido al portal ");
 

@@ -58,6 +58,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
 
         jLabel1.setForeground(new java.awt.Color(0, 153, 204));
         jLabel1.setText("MASCOTA");
