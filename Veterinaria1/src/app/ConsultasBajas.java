@@ -3,8 +3,9 @@ package app;
 
 import domain.*;
 import app.Principal;
-import java.util.Set;
+import java.util.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ConsultasBajas extends javax.swing.JFrame {
@@ -29,7 +30,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
         SpanelBuscar1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMascotas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         txtBaja = new javax.swing.JButton();
         jPanelCliente = new javax.swing.JPanel();
@@ -63,7 +64,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 153, 204));
         jLabel1.setText("MASCOTA");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMascotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -71,7 +72,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
                 "Nombre", "Especie", "Descripcion"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableMascotas);
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -249,15 +250,52 @@ public class ConsultasBajas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
         else
         {
-            Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
+            Mascota mascota1 = new Mascota(20, "masculino", "rayas", "felino", "gatuno", "bañarse");
+            Mascota mascota2 = new Mascota(10, "hembra", "bicho", "felino", "gatuno", "desparasitar");
+
+            Cliente cliente1 = new Cliente("Alejandro", "Granados", "bello", "ixtapa", "los heroses", 
+                    5454, "mz", "casa", 4546848);
+            cliente1.agregarMascota(mascota1);
+            cliente1.agregarMascota(mascota2);
             Veterinaria vet = new Veterinaria();
+            vet.agregarCliente(cliente1);
+            
+            
+            
+//            DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
+            
+            Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
+//            Veterinaria vet = new Veterinaria();
             
             Set<Mascota> mascotas = vet.busquedaMascotas(cliente);
             
-            mascotas.forEach(elemento->{
-                System.out.println(elemento);
-            });
+            if(mascotas.isEmpty())
+                JOptionPane.showMessageDialog(null,"Esta persona no cuenta con mascotas registradas en ese lugar.");
+            else
+            {
+                List<Mascota> listaMascotas = new ArrayList<Mascota>(mascotas);
             
+            
+            
+            
+                DefaultTableModel modelo;
+                modelo= (DefaultTableModel)jTableMascotas.getModel();
+                Object[] fila=new Object[3];
+
+                for (int i = 0; i < mascotas.size(); i++) {
+    //                jTableMascotas.setValueAt(listaMascotas.get(i).getNombre(), i, 0);
+    //                jTableMascotas.setValueAt(listaMascotas.get(i).getEspecie(), i, 1);
+    //                jTableMascotas.setValueAt(listaMascotas.get(i).getDescripcion(), i, 2);
+
+                    fila[0]=listaMascotas.get(i).getNombre();
+                    fila[1]=listaMascotas.get(i).getRaza();
+                    fila[2]=listaMascotas.get(i).getGenero();
+
+                    modelo.addRow(fila); 
+                
+            }
+            
+            }
         }
         
         
@@ -297,11 +335,9 @@ public class ConsultasBajas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaternoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtPaternoActionPerformed
 
     private void txtMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaternoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtMaternoActionPerformed
 
     public static void main(String args[]) {
@@ -330,7 +366,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMascotas;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton txtBaja;
     private javax.swing.JButton txtBuscar;
