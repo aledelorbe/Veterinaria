@@ -76,4 +76,8 @@ public class Veterinaria {
         });
         
     }
+    
+    public int validarExistenciaCliente(){
+        
+    }
 }

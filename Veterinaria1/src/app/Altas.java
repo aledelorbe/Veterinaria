@@ -453,10 +453,11 @@ public class Altas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SpanelLayout = new javax.swing.GroupLayout(Spanel);
@@ -543,15 +544,17 @@ public class Altas extends javax.swing.JFrame {
             {
                 Cliente cliente = new Cliente(txtNombreCliente.getText(), txtApaterno.getText(), txtAmaterno.getText(), txtColonia.getText(), txtMunicipio.getText(), Integer.parseInt(txtCp.getText()), txtNoExterior.getText(), txtNoInterior.getText(), Long.parseLong(txtTelefono.getText()));
                 Mascota mascota = new Mascota(Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtNombreMascota.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
-                Veterinaria vet = new Veterinaria();
                 
+                if( Principal.vet.validarExistenciaCliente() )
                 cliente.agregarMascota(mascota);
-                vet.agregarCliente(cliente);
+                Principal.vet.agregarCliente(cliente);
 
                 limpiarTextFields(jPanelMascota);
                 JOptionPane.showMessageDialog(null,"¡Registro ingresado correctamente!"); 
             }
         }
+        
+        Principal.vet.mostrarClientes();
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void txtEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspecieActionPerformed

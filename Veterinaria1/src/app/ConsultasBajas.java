@@ -256,15 +256,6 @@ public class ConsultasBajas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
         else
         {
-            Mascota mascota1 = new Mascota(20, "masculino", "rayas", "felino", "gatuno", "bañarse");
-            Mascota mascota2 = new Mascota(10, "hembra", "bicho", "felino", "gatuno", "desparasitar");
-
-            Cliente cliente1 = new Cliente("Alejandro", "Granados", "bello", "ixtapa", "los heroses", 
-                    5454, "mz", "casa", 4546848);
-            cliente1.agregarMascota(mascota1);
-            cliente1.agregarMascota(mascota2);
-            Principal.vet.agregarCliente(cliente1);
-            
             Principal.vet.mostrarClientes();
             
             DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
