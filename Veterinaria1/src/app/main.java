@@ -15,8 +15,8 @@ public class main {
         cliente1.agregarMascota(mascota2);
         
         Veterinaria vet = new Veterinaria();
-        vet.agregarCliente(cliente1); //se agrega intencionalmente 2 veces al mismo cliente para que se vea que no se aceptan registros duplicados.
-        vet.agregarCliente(cliente1); 
+//        vet.agregarCliente(cliente1); //se agrega intencionalmente 2 veces al mismo cliente para que se vea que no se aceptan registros duplicados.
+//        vet.agregarCliente(cliente1); 
         vet.mostrarClientes();
 //        
 //        Mascota mascota3 = new Mascota(5, "hembra", "pancha", "reptil", "tortuga", "cambiar agua");

@@ -545,9 +545,14 @@ public class Altas extends javax.swing.JFrame {
                 Cliente cliente = new Cliente(txtNombreCliente.getText(), txtApaterno.getText(), txtAmaterno.getText(), txtColonia.getText(), txtMunicipio.getText(), Integer.parseInt(txtCp.getText()), txtNoExterior.getText(), txtNoInterior.getText(), Long.parseLong(txtTelefono.getText()));
                 Mascota mascota = new Mascota(Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtNombreMascota.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
                 
-                if( Principal.vet.validarExistenciaCliente() )
-                cliente.agregarMascota(mascota);
-                Principal.vet.agregarCliente(cliente);
+                if( Principal.vet.validarExistenciaCliente(cliente) )
+                    Principal.vet.agregarClienteMascota(cliente, mascota);
+                else
+                    Principal.vet.agregarCliente(cliente, mascota);
+//                    
+                    
+//                cliente.agregarMascota(mascota);
+//                Principal.vet.agregarCliente(cliente);
 
                 limpiarTextFields(jPanelMascota);
                 JOptionPane.showMessageDialog(null,"¡Registro ingresado correctamente!"); 

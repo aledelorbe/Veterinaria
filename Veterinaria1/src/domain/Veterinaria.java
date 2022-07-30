@@ -17,9 +17,9 @@ public class Veterinaria {
     
     
     
-    public void agregarCliente(Cliente cliente){
-        this.clientes.add(cliente);
-    }
+//    public void agregarCliente(Cliente cliente){
+//        this.clientes.add(cliente);
+//    }
     
     public void mostrarClientes(){
         this.clientes.forEach(elemento -> {
@@ -30,7 +30,7 @@ public class Veterinaria {
         });
     }
     
-    public Set<Mascota> busquedaMascotas(Cliente clienteBus){
+    public Set<Mascota> busquedaMascotasCliente(Cliente clienteBus){
         
         Set<Mascota> mascotasCli = new HashSet();
         
@@ -49,12 +49,11 @@ public class Veterinaria {
         return mascotasCli;
     }
     
-    public void eliminarMascota(Cliente clienteBus, Mascota mascotaBus){
+    public void eliminarMascotaCliente(Cliente clienteBus, Mascota mascotaBus){
         
         Mascota mascotaEli = null;
         
         this.clientes.forEach(elemento->{
-            System.out.println("iteracion");
             if(elemento.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
                     elemento.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
                     elemento.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
@@ -77,7 +76,45 @@ public class Veterinaria {
         
     }
     
-    public int validarExistenciaCliente(){
+    public boolean validarExistenciaCliente(Cliente clienteBus){
+        boolean respuesta = false;
         
+        if( this.clientes.contains(clienteBus) )
+            respuesta = true;
+        
+        return respuesta;
+    }
+    
+//    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
+//        
+//        this.clientes.forEach(cliente->{
+//            if(cliente.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+//                    cliente.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+//                    cliente.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
+//            {
+//                cliente.agregarMascota(mascotaIn);
+//                return;
+//            }
+//        });
+//        
+////        clienteBus.agregarMascota(mascotaIn);
+////        this.clientes.add(clienteBus);
+//    }
+    
+    
+    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
+
+        this.clientes.forEach(cliente->{
+            if(cliente.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    cliente.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    cliente.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
+                cliente.agregarMascota(mascotaIn);
+        });
+    }
+    
+    public void agregarCliente(Cliente clienteBus, Mascota mascotaIn){
+    
+        clienteBus.agregarMascota(mascotaIn);
+        this.clientes.add(clienteBus);
     }
 }

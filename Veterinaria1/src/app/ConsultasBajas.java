@@ -261,7 +261,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
             DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
             
-            Set<Mascota> mascotas = Principal.vet.busquedaMascotas(cliente);
+            Set<Mascota> mascotas = Principal.vet.busquedaMascotasCliente(cliente);
             
             if(mascotas.isEmpty())
                 JOptionPane.showMessageDialog(null,"Esta persona no cuenta con mascotas registradas en ese lugar.");
@@ -293,7 +293,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
             Mascota mascota = new Mascota((String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 0), (String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 1), (String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 2));
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
 //            Veterinaria vet = new Veterinaria();
-            Principal.vet.eliminarMascota(cliente, mascota);
+            Principal.vet.eliminarMascotaCliente(cliente, mascota);
             
             
             DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
