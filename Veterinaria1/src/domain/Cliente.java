@@ -122,6 +122,32 @@ public class Cliente {
         return "Cliente{" + "nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", colonia=" + colonia + ", municipio=" + municipio + ", cp=" + cp + ", noExterior=" + noExterior + ", noInterior=" + noInterior + ", telefono=" + telefono + ", mascotas=" + mascotas + '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidoPaterno, other.apellidoPaterno)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidoMaterno, other.apellidoMaterno)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
     public void agregarMascota(Mascota mascota){
         this.mascotas.add(mascota);
     }

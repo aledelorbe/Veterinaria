@@ -76,14 +76,71 @@ public class Veterinaria {
         
     }
     
-    public boolean validarExistenciaCliente(Cliente clienteBus){
-        boolean respuesta = false;
+    
+    
+    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
         
-        if( this.clientes.contains(clienteBus) )
-            respuesta = true;
         
-        return respuesta;
+        
+        if( this.clientes.isEmpty() )
+        {
+            clienteBus.agregarMascota(mascotaIn);
+            this.clientes.add(clienteBus);
+        }
+        else
+        {
+            List<Cliente> lista = new ArrayList(this.clientes);
+            int i, respuesta = 0;
+            
+            for (i = 0; i < lista.size(); i++) {
+                if ( lista.get(i).equals(clienteBus) )
+                {
+                    respuesta = 1;
+                    break;
+                }
+                    
+            }
+            
+            if( respuesta == 1)
+                lista.get(i).agregarMascota(mascotaIn);
+            else{
+                clienteBus.agregarMascota(mascotaIn);
+                this.clientes.add(clienteBus);
+            }
+        }
+        
+//        this.clientes.forEach(cliente->{
+//            if( cliente.equals(clienteBus) )
+//            {
+//                cliente.agregarMascota(mascotaIn);
+//                System.out.println("si existe");
+//                return;
+//            }
+//        });
+//        
+//        clienteBus.agregarMascota(mascotaIn);
+//        this.clientes.add(clienteBus);
+//        System.out.println("no existe.");
+        
     }
+       
+    
+//    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
+//        
+//        this.clientes.forEach(cliente->{
+//            if( cliente.equals(clienteBus) )
+//            {
+//                cliente.agregarMascota(mascotaIn);
+//                System.out.println("si existe");
+//                return;
+//            }
+//        });
+//        
+//        clienteBus.agregarMascota(mascotaIn);
+//        this.clientes.add(clienteBus);
+//        System.out.println("no existe.");
+//        
+//    }
     
 //    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
 //        
@@ -102,19 +159,19 @@ public class Veterinaria {
 //    }
     
     
-    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
-
-        this.clientes.forEach(cliente->{
-            if(cliente.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
-                    cliente.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
-                    cliente.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
-                cliente.agregarMascota(mascotaIn);
-        });
-    }
-    
-    public void agregarCliente(Cliente clienteBus, Mascota mascotaIn){
-    
-        clienteBus.agregarMascota(mascotaIn);
-        this.clientes.add(clienteBus);
-    }
+//    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
+//
+//        this.clientes.forEach(cliente->{
+//            if(cliente.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+//                    cliente.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+//                    cliente.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
+//                cliente.agregarMascota(mascotaIn);
+//        });
+//    }
+//    
+//    public void agregarCliente(Cliente clienteBus, Mascota mascotaIn){
+//    
+//        clienteBus.agregarMascota(mascotaIn);
+//        this.clientes.add(clienteBus);
+//    }
 }
