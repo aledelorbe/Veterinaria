@@ -12,6 +12,8 @@ public class Altas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); 
     }
     
+    // Funcion para limpiar todos los textField que esten dentro de determinado
+    // panel.
     public static void limpiarTextFields(JPanel panel){
         JTextField caja;
         
@@ -457,7 +459,7 @@ public class Altas extends javax.swing.JFrame {
                 .addGroup(jPanelMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SpanelLayout = new javax.swing.GroupLayout(Spanel);
@@ -519,13 +521,16 @@ public class Altas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Si se presiona este boton el usuario volvera a la ventana principal.
         Principal principal = new Principal();
         principal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
-        
+
+        // Si algun textField no tiene informacion, al usaurio se le desplegara la informacion de que todos los campos
+        // deben ser llenados.
         if(txtNombreCliente.getText().isEmpty() || txtApaterno.getText().isEmpty() || txtAmaterno.getText().isEmpty() || txtColonia.getText().isEmpty() || 
                     txtMunicipio.getText().isEmpty() || txtCp.getText().isEmpty() || txtNoExterior.getText().isEmpty() || txtNoInterior.getText().isEmpty() || 
                     txtTelefono.getText().isEmpty() || txtEdad.getText().isEmpty() || txtGenero.getText().isEmpty() || txtNombreMascota.getText().isEmpty() || 
@@ -533,7 +538,7 @@ public class Altas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
         else
         {
-            // Validar que telefono, cp y edad sean datos numericos.
+            // Validar que el usuario haya puesto en los campos: telefono, cp y edad datos numericos.
             if( !txtTelefono.getText().matches("[+-]?\\d*(\\.\\d+)?") )
                 JOptionPane.showMessageDialog(null,"Tipo de dato en campo telefono invalido. Debe colocar un dato numerico.");
             else if( !txtCp.getText().matches("[+-]?\\d*(\\.\\d+)?") )
@@ -542,10 +547,14 @@ public class Altas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Tipo de dato en campo edad invalido. Debe colocar un dato numerico.");
             else
             {
+                // Si todos los campos fueron llenados y de manera correcta, entonces con la infomacion que se extrae
+                // de los textField se crea un objeto cliente y mascota, posteriormente se agregan a la veterinaria.
                 Cliente cliente = new Cliente(txtNombreCliente.getText(), txtApaterno.getText(), txtAmaterno.getText(), txtColonia.getText(), txtMunicipio.getText(), Integer.parseInt(txtCp.getText()), txtNoExterior.getText(), txtNoInterior.getText(), Long.parseLong(txtTelefono.getText()));
                 Mascota mascota = new Mascota(txtNombreMascota.getText(), Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
                 Principal.vet.agregarClienteMascota(cliente, mascota);
 
+                // Se limpian los textField unicmante de la mascota, ya que un mismo cliente (con evidente la misma 
+                // informacion) puede ingresar datos para una segunda o tercera mascota que este tenga.
                 limpiarTextFields(jPanelMascota);
                 JOptionPane.showMessageDialog(null,"¡Registro ingresado correctamente!"); 
             }
@@ -598,6 +607,8 @@ public class Altas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // Si el usuario presiona este boton todos los textField relacionados a la informacion
+        // del cliente se vaciaran.
         limpiarTextFields(jPanelCliente);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 

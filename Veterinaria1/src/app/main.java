@@ -1,4 +1,4 @@
-
+// Esta clase se creo para reliazar pruebas de los metodos que se iban creando.
 package app;
 
 import negocio.Veterinaria;
@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class main {
     public static void main(String[] args) {
-        Mascota mascota1 = new Mascota(20, "masculino", "rayas", "felino", "gatuno", "bañarse");
-        Mascota mascota2 = new Mascota(10, "hembra", "bicho", "felino", "gatuno", "desparasitar");
+        Mascota mascota1 = new Mascota("rayas", 20, "masculino", "felino", "gatuno", "bañarse");
+        Mascota mascota2 = new Mascota("bicho", 10, "hembra", "felino", "gatuno", "desparasitar");
         
         Cliente cliente1 = new Cliente("Alejandro", "Granados", "bello", "ixtapa", "los heroses", 
                 5454, "mz", "casa", 4546848);
