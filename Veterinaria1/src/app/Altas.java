@@ -457,7 +457,7 @@ public class Altas extends javax.swing.JFrame {
                 .addGroup(jPanelMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SpanelLayout = new javax.swing.GroupLayout(Spanel);
@@ -533,7 +533,7 @@ public class Altas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
         else
         {
-            // validar que telefono y cp sean numericos.
+            // Validar que telefono, cp y edad sean datos numericos.
             if( !txtTelefono.getText().matches("[+-]?\\d*(\\.\\d+)?") )
                 JOptionPane.showMessageDialog(null,"Tipo de dato en campo telefono invalido. Debe colocar un dato numerico.");
             else if( !txtCp.getText().matches("[+-]?\\d*(\\.\\d+)?") )
@@ -543,7 +543,7 @@ public class Altas extends javax.swing.JFrame {
             else
             {
                 Cliente cliente = new Cliente(txtNombreCliente.getText(), txtApaterno.getText(), txtAmaterno.getText(), txtColonia.getText(), txtMunicipio.getText(), Integer.parseInt(txtCp.getText()), txtNoExterior.getText(), txtNoInterior.getText(), Long.parseLong(txtTelefono.getText()));
-                Mascota mascota = new Mascota(Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtNombreMascota.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
+                Mascota mascota = new Mascota(txtNombreMascota.getText(), Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
                 Principal.vet.agregarClienteMascota(cliente, mascota);
 
                 limpiarTextFields(jPanelMascota);

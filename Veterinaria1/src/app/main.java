@@ -1,6 +1,7 @@
 
 package app;
 
+import negocio.Veterinaria;
 import domain.*;
 import java.util.Set;
 

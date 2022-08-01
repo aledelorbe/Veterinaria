@@ -1,6 +1,4 @@
 package domain;
-
-
 import java.util.*;
 
 
@@ -17,6 +15,7 @@ public class Cliente {
     private long telefono;
     private List<Mascota> mascotas;
 
+    // Constructor de todos los datos que deberia tener un cliente.
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String colonia, String municipio, int cp, String noExterior, String noInterior, long telefono) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -30,7 +29,9 @@ public class Cliente {
         this.mascotas = new ArrayList();
     }
 
-    // constructor para buscar cliente.
+    // Constructor para buscar un cliente. Los datos escenciales que dos clientes no deben tener iguales por que de ser
+    // el caso, son el mismo cliente. Tambien se utilizo para buscar a determinado cliente de entre todos los que tiene
+    // una veterinaria.
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -122,6 +123,8 @@ public class Cliente {
         return "Cliente{" + "nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", colonia=" + colonia + ", municipio=" + municipio + ", cp=" + cp + ", noExterior=" + noExterior + ", noInterior=" + noInterior + ", telefono=" + telefono + ", mascotas=" + mascotas + '}';
     }
 
+    // Al final se quito el equals de esta clase porque un usuario puede buscar a un cliente sin entender la importancia
+    // de los caracteres minusculos y mayusculos, por lo que se opto por ocupar el metodo ignoreCase.
 //    @Override
 //    public boolean equals(Object obj) {
 //        if (this == obj) {
@@ -146,7 +149,7 @@ public class Cliente {
 //        return true;
 //    }
     
-
+    // Metodos de la clase.
     public void agregarMascota(Mascota mascota){
         this.mascotas.add(mascota);
     }

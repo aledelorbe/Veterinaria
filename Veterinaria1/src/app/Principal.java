@@ -2,7 +2,7 @@ package app;
 
 import domain.Cliente;
 import domain.Mascota;
-import domain.Veterinaria;
+import negocio.Veterinaria;
 
 
 public class Principal extends javax.swing.JFrame {

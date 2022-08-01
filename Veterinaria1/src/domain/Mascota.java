@@ -1,25 +1,27 @@
 package domain;
-
 import java.util.Objects;
 
 
 public class Mascota {
     
     private String nombre;
-    private String especie;
-    private String descripcion;
     private int edad;
     private String genero;
     private String raza;
-    
+    private String especie;
+    private String descripcion;
 
+    
+    //Constructor para buscar una mascota. Contiene los datos necesarios para saber si dos mascotas son iguales o no.
+    // Tambien se utilizo para buscar a determinada mascota de entre todas las que tiene determinado cliente.
     public Mascota(String nombre, String especie, String descripcion) {
         this.nombre = nombre;
         this.especie = especie;
         this.descripcion = descripcion;
     }
 
-    public Mascota(int edad, String genero, String nombre, String raza, String especie, String descripcion) {
+    // Constructor de todos los datos que deberia tener un cliente.
+    public Mascota(String nombre, int edad, String genero, String raza, String especie, String descripcion) {
         this.edad = edad;
         this.genero = genero;
         this.nombre = nombre;
@@ -76,11 +78,18 @@ public class Mascota {
         this.descripcion = descripcion;
     }
 
+    
+    
+    
     @Override
     public String toString() {
-        return "Mascota{" + "nombre=" + nombre + ", especie=" + especie + ", descripcion=" + descripcion + ", edad=" + edad + ", genero=" + genero + ", raza=" + raza + '}';
+        return "Mascota{" + "nombre=" + nombre + ", edad=" + edad + ", genero=" + genero + ", raza=" + raza + ", especie=" + especie + ", descripcion=" + descripcion + '}';
     }
 
+    // A diferencia de la clase cliente, aqui si se utiliza el metodo equals, pues los datos nombre, especie 
+    // y descripcion, son datos con los cuales no interactua una segunda vez un usuario, es decir, no son insertados 
+    // una segunda vez a traves del teclado si no son extraidos de el jTable, entonces forzosamente tendran los mismos
+    // caracteres minusculos y mayusculos.
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -104,7 +113,4 @@ public class Mascota {
         }
         return true;
     }
-    
-    
-    
 }
