@@ -113,14 +113,7 @@ public class Veterinaria {
             }
         }
     }
-    
-    
-    
-    //Validar que no se agrege una misma mascota dos veces.
-    /*
-    
-    */
-    
+
     // Metodo diseñado para dar de baja los datos de cierta mascota la cual pertenece
     // a cierto cliente.
     public void eliminarMascotaCliente(Cliente clienteBus, Mascota mascotaBus){
