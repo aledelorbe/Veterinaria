@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Veterinaria {
     
-    // Se utiliza un set para evitar duplicacion de registros en los clientes.
     private List<Cliente> clientes = new ArrayList();
 
     public List<Cliente> getClientes() {
@@ -18,9 +17,9 @@ public class Veterinaria {
 
     
     public void mostrarClientes(){
-        this.clientes.forEach(elemento -> {
-            System.out.println(elemento);
-            elemento.getMascotas().forEach(mascota ->{
+        this.clientes.forEach(cliente -> {
+            System.out.println(cliente);
+            cliente.getMascotas().forEach(mascota ->{
                 System.out.println("\t" + mascota);
             });
         });
@@ -29,12 +28,12 @@ public class Veterinaria {
     public List<Mascota> busquedaMascotasCliente(Cliente clienteBus){
         List<Mascota> mascotasCli = new ArrayList();
         
-        this.clientes.forEach(elemento->{
-            if(elemento.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
-                    elemento.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
-                    elemento.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
+        this.clientes.forEach(cliente->{
+            if(cliente.getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    cliente.getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    cliente.getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
             {
-                elemento.getMascotas().forEach(mascota->{
+                cliente.getMascotas().forEach(mascota->{
                     mascotasCli.add(mascota);
                 });
             }
@@ -56,14 +55,17 @@ public class Veterinaria {
             int i, respuesta = 0;
             
             for (i = 0; i < this.clientes.size(); i++) {
-                if ( this.clientes.get(i).equals(clienteBus) )
+//                if ( this.clientes.get(i).equals(clienteBus) )
+                if(this.clientes.get(i).getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    this.clientes.get(i).getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    this.clientes.get(i).getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
                 {
                     respuesta = 1;
                     break;
                 }
             }
             
-            if( respuesta == 1)
+            if( respuesta == 1 )
                 this.clientes.get(i).agregarMascota(mascotaIn);
             else{
                 clienteBus.agregarMascota(mascotaIn);
@@ -80,16 +82,16 @@ public class Veterinaria {
     public void eliminarMascotaCliente(Cliente clienteBus, Mascota mascotaBus){
 
         for (int i = 0; i < this.clientes.size(); i++) {
-            if ( this.clientes.get(i).equals(clienteBus) )
+            if(this.clientes.get(i).getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    this.clientes.get(i).getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    this.clientes.get(i).getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
             {
                 System.out.println("si existe el cliente");
-//                List<Mascota> listaM = new ArrayList(listaC.get(i).getMascotas());
                 for (int j = 0; j < this.clientes.get(i).getMascotas().size(); j++) {
                     if( this.clientes.get(i).getMascotas().get(j).equals(mascotaBus) )
                     {
                         System.out.println("si existe la mascota");
                         System.out.println("mascota: " + this.clientes.get(i).getMascotas().get(j));
-//                        listaM.remove(j);
                         this.clientes.get(i).getMascotas().remove(j);
                     }
                 }

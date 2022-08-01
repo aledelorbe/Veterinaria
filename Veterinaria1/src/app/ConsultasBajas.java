@@ -279,6 +279,7 @@ public class ConsultasBajas extends javax.swing.JFrame {
                 }
             }
         }
+        System.out.println("-----------------------Consultas/Bajas--------------------------------");
         Principal.vet.mostrarClientes();
     }//GEN-LAST:event_txtBuscarActionPerformed
 
