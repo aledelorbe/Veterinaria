@@ -83,10 +83,28 @@ public class Veterinaria {
                 }
             }
             
-            // si el cliente ya estaba dado de alta en la veterinaria, a ese cliente se le da de alta
-            // a la mascota.
-            if( respuesta == 1 )
-                this.clientes.get(i).agregarMascota(mascotaIn);
+            // si el cliente ya estaba dado de alta en la veterinaria.
+            if( respuesta == 1 ){
+                
+                List<Mascota> mascotas = this.clientes.get(i).getMascotas();
+                int respuesta2 = 0;
+                
+                // Entonces de todas sus mascotas que tiene registradas, busca si el registro de su
+                // mascota ya existe.
+                for (int j = 0; j < this.clientes.get(i).getMascotas().size(); j++) {
+                    if( mascotas.get(j).getNombre().equalsIgnoreCase(mascotaIn.getNombre()) &&
+                        mascotas.get(j).getEspecie().equalsIgnoreCase(mascotaIn.getEspecie()) &&
+                        mascotas.get(j).getDescripcion().equalsIgnoreCase(mascotaIn.getDescripcion()) )
+                    {
+                        respuesta2 = 1;
+                        break;
+                    }
+                }
+                
+                // Si la mascota no esta dada de alta, la agrega al respectivo clietne.
+                if( respuesta2 == 0 )
+                    this.clientes.get(i).agregarMascota(mascotaIn);
+            }
             else{ 
             // si el cliente no estaba dado de alta en la veterinaria, dar de alta al cliente y dar de alta
             // a su respectiva mascota.
