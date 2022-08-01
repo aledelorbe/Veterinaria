@@ -1,16 +1,17 @@
 package domain;
 
-
+import java.util.Objects;
 
 
 public class Mascota {
     
-    private int edad;
-    private String genero;
     private String nombre;
-    private String raza;
     private String especie;
     private String descripcion;
+    private int edad;
+    private String genero;
+    private String raza;
+    
 
     public Mascota(String nombre, String especie, String descripcion) {
         this.nombre = nombre;
@@ -77,9 +78,32 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return "Mascota{" + "edad=" + edad + ", genero=" + genero + ", nombre=" + nombre + ", raza=" + raza + ", especie=" + especie + ", descripcion=" + descripcion + '}';
+        return "Mascota{" + "nombre=" + nombre + ", especie=" + especie + ", descripcion=" + descripcion + ", edad=" + edad + ", genero=" + genero + ", raza=" + raza + '}';
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Mascota other = (Mascota) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.especie, other.especie)) {
+            return false;
+        }
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        return true;
+    }
     
     
     

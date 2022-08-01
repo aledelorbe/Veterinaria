@@ -457,7 +457,7 @@ public class Altas extends javax.swing.JFrame {
                 .addGroup(jPanelMascotaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SpanelLayout = new javax.swing.GroupLayout(Spanel);
@@ -544,15 +544,7 @@ public class Altas extends javax.swing.JFrame {
             {
                 Cliente cliente = new Cliente(txtNombreCliente.getText(), txtApaterno.getText(), txtAmaterno.getText(), txtColonia.getText(), txtMunicipio.getText(), Integer.parseInt(txtCp.getText()), txtNoExterior.getText(), txtNoInterior.getText(), Long.parseLong(txtTelefono.getText()));
                 Mascota mascota = new Mascota(Integer.parseInt(txtEdad.getText()), txtGenero.getText(), txtNombreMascota.getText(), txtRaza.getText(), txtEspecie.getText(), txtDescripcion.getText());
-                
-//                if( Principal.vet.validarExistenciaCliente(cliente) )
-//                    Principal.vet.agregarClienteMascota(cliente, mascota);
-//                else
-//                    Principal.vet.agregarCliente(cliente, mascota);
-//                    
-                    Principal.vet.agregarClienteMascota(cliente, mascota);
-//                cliente.agregarMascota(mascota);
-//                Principal.vet.agregarCliente(cliente);
+                Principal.vet.agregarClienteMascota(cliente, mascota);
 
                 limpiarTextFields(jPanelMascota);
                 JOptionPane.showMessageDialog(null,"¡Registro ingresado correctamente!"); 
@@ -560,61 +552,49 @@ public class Altas extends javax.swing.JFrame {
         }
         
         Principal.vet.mostrarClientes();
+        System.out.println("--------------------------------");
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void txtEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspecieActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtEspecieActionPerformed
 
     private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
-
     }//GEN-LAST:event_txtEdadActionPerformed
 
     private void txtNombreMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMascotaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreMascotaActionPerformed
 
     private void txtNoExteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoExteriorActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtNoExteriorActionPerformed
 
     private void txtCpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtCpActionPerformed
 
     private void txtMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMunicipioActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtMunicipioActionPerformed
 
     private void txtColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColoniaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtColoniaActionPerformed
 
     private void txtNoInteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoInteriorActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtNoInteriorActionPerformed
 
     private void txtAmaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmaternoActionPerformed
-
     }//GEN-LAST:event_txtAmaternoActionPerformed
 
     private void txtApaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApaternoActionPerformed
-
     }//GEN-LAST:event_txtApaternoActionPerformed
 
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreClienteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

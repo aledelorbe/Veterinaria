@@ -1,5 +1,7 @@
 package app;
 
+import domain.Cliente;
+import domain.Mascota;
 import domain.Veterinaria;
 
 
@@ -102,6 +104,16 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnBajasConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajasConsultaActionPerformed
+        Mascota mascota1 = new Mascota(20, "masculino", "rayas", "felino", "gatuno", "bañarse");
+        Mascota mascota2 = new Mascota(10, "hembra", "bicho", "felino", "gatuno", "desparasitar");
+        
+        Cliente cliente1 = new Cliente("Alejandro", "Granados", "bello", "ixtapa", "los heroses", 
+                5454, "mz", "casa", 4546848);
+        Principal.vet.agregarClienteMascota(cliente1, mascota1); 
+        Principal.vet.agregarClienteMascota(cliente1, mascota2); 
+        
+        Principal.vet.mostrarClientes();
+
         ConsultasBajas consultasBajas = new ConsultasBajas();
         consultasBajas.setVisible(true);
         this.setVisible(false);

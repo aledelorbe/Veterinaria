@@ -15,7 +15,7 @@ public class Cliente {
     private String noExterior;
     private String noInterior;
     private long telefono;
-    private Set<Mascota> mascotas;
+    private List<Mascota> mascotas;
 
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String colonia, String municipio, int cp, String noExterior, String noInterior, long telefono) {
         this.nombre = nombre;
@@ -27,7 +27,7 @@ public class Cliente {
         this.noExterior = noExterior;
         this.noInterior = noInterior;
         this.telefono = telefono;
-        this.mascotas = new HashSet();
+        this.mascotas = new ArrayList();
     }
 
     // constructor para buscar cliente.
@@ -109,11 +109,11 @@ public class Cliente {
         this.telefono = telefono;
     }
         
-    public Set<Mascota> getMascotas() {
+    public List<Mascota> getMascotas() {
         return mascotas;
     }
 
-    public void setMascotas(Set<Mascota> mascotas) {
+    public void setMascotas(List<Mascota> mascotas) {
         this.mascotas = mascotas;
     }
     
@@ -145,7 +145,6 @@ public class Cliente {
         }
         return true;
     }
-    
     
 
     public void agregarMascota(Mascota mascota){
