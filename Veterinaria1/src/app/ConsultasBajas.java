@@ -2,25 +2,38 @@ package app;
 
 
 import domain.*;
-import app.Principal;
 import java.util.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
 public class ConsultasBajas extends javax.swing.JFrame {
-
    
     public ConsultasBajas() {
         initComponents();
         this.setLocationRelativeTo(null); 
     }
     
+    // Funcion para dejar limpia la tabla con la informacion de las mascotas.
     public void limpiarTabla(){
         DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
         
         while (modelo.getRowCount() > 0)
             modelo.removeRow(0);
+    }
+    
+    // Funcion para limpiar todos los textField que esten dentro de determinado
+    // panel.
+    public void limpiarTextFields(JPanel panel){
+        JTextField caja;
+        
+        for (int i = 0; i < panel.getComponentCount(); i++) {
+            if( panel.getComponent(i).getClass().getName().equals("javax.swing.JTextField"))
+            {
+                caja = (JTextField)panel.getComponent(i);
+                caja.setText("");
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -37,8 +50,9 @@ public class ConsultasBajas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMascotas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        txtBaja = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        btnBaja = new javax.swing.JButton();
+        btnLimpiarDatos = new javax.swing.JButton();
         jPanelCliente = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -80,17 +94,24 @@ public class ConsultasBajas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableMascotas);
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegresarActionPerformed(evt);
             }
         });
 
-        txtBaja.setText("Baja");
-        txtBaja.addActionListener(new java.awt.event.ActionListener() {
+        btnBaja.setText("Baja");
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBajaActionPerformed(evt);
+                btnBajaActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarDatos.setText("Limpiar Datos");
+        btnLimpiarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarDatosActionPerformed(evt);
             }
         });
 
@@ -99,18 +120,18 @@ public class ConsultasBajas extends javax.swing.JFrame {
         SpanelBuscar1Layout.setHorizontalGroup(
             SpanelBuscar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SpanelBuscar1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addGroup(SpanelBuscar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(SpanelBuscar1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(SpanelBuscar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(SpanelBuscar1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1)
-                        .addGap(229, 229, 229)
-                        .addComponent(txtBaja)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addGroup(SpanelBuscar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(SpanelBuscar1Layout.createSequentialGroup()
+                            .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(36, 36, 36)
+                            .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         SpanelBuscar1Layout.setVerticalGroup(
             SpanelBuscar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,9 +142,10 @@ public class ConsultasBajas extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(SpanelBuscar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jLabel8.setForeground(new java.awt.Color(255, 0, 51));
@@ -252,28 +274,31 @@ public class ConsultasBajas extends javax.swing.JFrame {
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
 
-        
+        // si el usuario no ha llenado todo los campos, se le avisa que no se puede continuar.
         if(txtNombre.getText().isEmpty() || txtPaterno.getText().isEmpty() || txtMaterno.getText().isEmpty() )
             JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
         else
         {
+            // Con la informacion extraida de los textField se crea un cliente.
             DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
-            
+            // Se busca todas las mascotas que tiene el cliente con la informacion proporcionada.
             List<Mascota> mascotas = Principal.vet.busquedaMascotasCliente(cliente);
             
+            // Si el cliente no cuenta con mascotas, se le avisa al usuario.
             if(mascotas.isEmpty())
                 JOptionPane.showMessageDialog(null,"Esta persona no cuenta con mascotas registradas en ese lugar.");
             else
             {
+                // Si el cliente cuenta con mascotas, se despliega la informacion mas importante de cada una 
+                // de ellas en una tabla.
                 limpiarTabla();
-                List<Mascota> listaMascotas = new ArrayList<Mascota>(mascotas);
                 Object[] fila=new Object[3];
 
                 for (int i = 0; i < mascotas.size(); i++) {
-                    fila[0]=listaMascotas.get(i).getNombre();
-                    fila[1]=listaMascotas.get(i).getEspecie();
-                    fila[2]=listaMascotas.get(i).getDescripcion();
+                    fila[0]=mascotas.get(i).getNombre();
+                    fila[1]=mascotas.get(i).getEspecie();
+                    fila[2]=mascotas.get(i).getDescripcion();
 
                     modelo.addRow(fila); 
                 }
@@ -283,40 +308,53 @@ public class ConsultasBajas extends javax.swing.JFrame {
         Principal.vet.mostrarClientes();
     }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void txtBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBajaActionPerformed
-
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
+        // si el usuario no ha llenado todo los campos, se le avisa que no se puede continuar.
         if(txtNombre.getText().isEmpty() || txtPaterno.getText().isEmpty() || txtMaterno.getText().isEmpty() )
             JOptionPane.showMessageDialog(null,"Todos los campos deben ser llenados para continuar.");
-        else if ( jTableMascotas.getSelectedRow() == -1 )
+        // Si el usuario no selecciona una fila, se le avisa que debe hacerlo.
+        else if ( jTableMascotas.getSelectedRow() == -1 ) 
             JOptionPane.showMessageDialog(null,"Debe seleccionar una fila de la tabla.");
         else
         {
+            // Se crea un objeto mascota y cliente, con los datos extraidos de la tabla y los textField repectivamente.
+            // Con base a dichas instancias, se manda a llamar el metodo que da de baja a la mascota de cierto cliente.
             Mascota mascota = new Mascota((String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 0), (String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 1), (String)jTableMascotas.getValueAt(jTableMascotas.getSelectedRow(), 2));
             Cliente cliente = new Cliente(txtNombre.getText(), txtPaterno.getText(), txtMaterno.getText());
             Principal.vet.eliminarMascotaCliente(cliente, mascota);
             
+            // La fila seleecionada por el usuario se elimina para que el visualmente observe que se ha eliminado
+            // el registro.
             DefaultTableModel modelo = (DefaultTableModel)jTableMascotas.getModel();
             modelo.removeRow(jTableMascotas.getSelectedRow());
             
             JOptionPane.showMessageDialog(null,"Registro eliminado correctamente.");
         }
-    }//GEN-LAST:event_txtBajaActionPerformed
+    }//GEN-LAST:event_btnBajaActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // Si el usuario presiona este boton regresara a la ventana principal.
         Principal Bienve=new Principal();
         Bienve.setVisible(true);
         
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaternoActionPerformed
     }//GEN-LAST:event_txtPaternoActionPerformed
 
     private void txtMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaternoActionPerformed
     }//GEN-LAST:event_txtMaternoActionPerformed
+
+    private void btnLimpiarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarDatosActionPerformed
+        // Si el usuario presiona este boton, todos los textField relacionados a la informacion
+        // del cliente se vaciaran adicionalmente la informacion en la tabla.
+        limpiarTabla();
+        limpiarTextFields(jPanelCliente);
+    }//GEN-LAST:event_btnLimpiarDatosActionPerformed
 
     public static void main(String args[]) {
   
@@ -330,7 +368,9 @@ public class ConsultasBajas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SpanelBuscar;
     private javax.swing.JPanel SpanelBuscar1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBaja;
+    private javax.swing.JButton btnLimpiarDatos;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -346,7 +386,6 @@ public class ConsultasBajas extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableMascotas;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton txtBaja;
     private javax.swing.JButton txtBuscar;
     private javax.swing.JTextField txtMaterno;
     private javax.swing.JTextField txtNombre;
