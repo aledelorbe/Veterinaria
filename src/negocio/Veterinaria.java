@@ -31,6 +31,7 @@ public class Veterinaria {
         });
     }
     
+    // Metodo que se encarga de verificar si existe determinado cliente.
     public boolean existeCliente(Cliente clienteBus, int indice[]){
         
         boolean respuesta = false;
@@ -48,7 +49,8 @@ public class Veterinaria {
         return respuesta;
     }
     
-    
+    // Metodo que se encarga de verificar si existe determinada mascota de
+    // cierto cliente.
     public boolean existeMascota(int indice[], Mascota mascotaBus){
         
         boolean respuesta = false;
@@ -64,16 +66,19 @@ public class Veterinaria {
         return respuesta;
     }
     
-    
+    // Metodo que se encarga de agregar una mascota a cierto cliente.
     public void agregarMascotaACliente(int indice[], Mascota mascotaIns){
         this.clientes.get(indice[0]).agregarMascota(mascotaIns);
     }
     
+    // Metodo que se encarga de agregar una mascota a un nuevo cliente.
     public void agregarClienteYMascota(Cliente clienteIns, Mascota mascotaIns){
         clienteIns.agregarMascota(mascotaIns);
         this.clientes.add(clienteIns);
     }
             
+    // Metodo que se encarga de decidir si se debe agregar o no a un nuevo cliente
+    // y si se debe agregar o no una mascota a cierto cliente.
     public void agregarClienteMascota(Cliente cliente, Mascota mascota){
         
         int indice[] = {0};
@@ -86,8 +91,6 @@ public class Veterinaria {
         else
             this.agregarClienteYMascota(cliente, mascota);
     }
-    
-    
     
     // Metodo que se encarga de extraer los datos de todas las mascotas que tiene 
     // cierto cliente.
