@@ -31,6 +31,64 @@ public class Veterinaria {
         });
     }
     
+    public boolean existeCliente(Cliente clienteBus, int indice[]){
+        
+        boolean respuesta = false;
+        
+        for (int i = 0; i < this.clientes.size(); i++) {
+            if(this.clientes.get(i).getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
+                    this.clientes.get(i).getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
+                    this.clientes.get(i).getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
+            {
+                respuesta = true;
+                indice[0] = i;
+            }
+        }
+        
+        return respuesta;
+    }
+    
+    
+    public boolean existeMascota(int indice[], Mascota mascotaBus){
+        
+        boolean respuesta = false;
+        List<Mascota> mascotas = this.clientes.get(indice[0]).getMascotas();
+        
+        for (int i = 0; i < mascotas.size(); i++) {
+            if( mascotas.get(i).getNombre().equalsIgnoreCase(mascotaBus.getNombre()) &&
+                        mascotas.get(i).getEspecie().equalsIgnoreCase(mascotaBus.getEspecie()) &&
+                        mascotas.get(i).getDescripcion().equalsIgnoreCase(mascotaBus.getDescripcion()) )
+            respuesta = true;
+        }
+        
+        return respuesta;
+    }
+    
+    
+    public void agregarMascotaACliente(int indice[], Mascota mascotaIns){
+        this.clientes.get(indice[0]).agregarMascota(mascotaIns);
+    }
+    
+    public void agregarClienteYMascota(Cliente clienteIns, Mascota mascotaIns){
+        clienteIns.agregarMascota(mascotaIns);
+        this.clientes.add(clienteIns);
+    }
+            
+    public void agregarClienteMascota(Cliente cliente, Mascota mascota){
+        
+        int indice[] = {0};
+        
+        if( this.existeCliente(cliente, indice) ){
+            if( !this.existeMascota(indice, mascota) ){
+                this.agregarMascotaACliente(indice, mascota);
+            }
+        }
+        else
+            this.agregarClienteYMascota(cliente, mascota);
+    }
+    
+    
+    
     // Metodo que se encarga de extraer los datos de todas las mascotas que tiene 
     // cierto cliente.
     public List<Mascota> busquedaMascotasCliente(Cliente clienteBus){
@@ -54,66 +112,7 @@ public class Veterinaria {
         return mascotasCli;
     }
     
-    // Metodo que se encarga de dar de alta a una mascota, pero validando si su
-    // dueño (cliente) ya tiene datos en la veterinaria, por que de ser asi, se busca
-    // los datos del dueño y se le agrega la mascota, pero si no es el caso, se da de
-    // alta al cliente junto a su respectiva mascota.
-    public void agregarClienteMascota(Cliente clienteBus, Mascota mascotaIn){
-        
-        // si no hay algun cliente registrado en la veterinaria.
-        if( this.clientes.isEmpty() )
-        {
-            // entonces asocia a que la mascota le pertenece al cliente y da de alta a ambos en la veterinaria.
-            clienteBus.agregarMascota(mascotaIn);
-            this.clientes.add(clienteBus);
-        }
-        else // si hay clientes registrados en la veterinaria.
-        {
-            int i, respuesta = 0;
-            
-            // Buscar de entre todos los clientes, cual tiene el nombre, apellido paterno y materno iguales a los 
-            // introducidos por el usuairo para relizar la alta de cliente.
-            for (i = 0; i < this.clientes.size(); i++) {
-                if(this.clientes.get(i).getNombre().equalsIgnoreCase(clienteBus.getNombre()) &&
-                    this.clientes.get(i).getApellidoPaterno().equalsIgnoreCase(clienteBus.getApellidoPaterno()) &&
-                    this.clientes.get(i).getApellidoMaterno().equalsIgnoreCase(clienteBus.getApellidoMaterno()) )
-                {
-                    respuesta = 1;
-                    break;
-                }
-            }
-            
-            // si el cliente ya estaba dado de alta en la veterinaria.
-            if( respuesta == 1 ){
-                
-                List<Mascota> mascotas = this.clientes.get(i).getMascotas();
-                int respuesta2 = 0;
-                
-                // Entonces de todas sus mascotas que tiene registradas, busca si el registro de su
-                // mascota ya existe.
-                for (int j = 0; j < this.clientes.get(i).getMascotas().size(); j++) {
-                    if( mascotas.get(j).getNombre().equalsIgnoreCase(mascotaIn.getNombre()) &&
-                        mascotas.get(j).getEspecie().equalsIgnoreCase(mascotaIn.getEspecie()) &&
-                        mascotas.get(j).getDescripcion().equalsIgnoreCase(mascotaIn.getDescripcion()) )
-                    {
-                        respuesta2 = 1;
-                        break;
-                    }
-                }
-                
-                // Si la mascota no esta dada de alta, la agrega al respectivo clietne.
-                if( respuesta2 == 0 )
-                    this.clientes.get(i).agregarMascota(mascotaIn);
-            }
-            else{ 
-            // si el cliente no estaba dado de alta en la veterinaria, dar de alta al cliente y dar de alta
-            // a su respectiva mascota.
-                clienteBus.agregarMascota(mascotaIn);
-                this.clientes.add(clienteBus);
-            }
-        }
-    }
-
+    
     // Metodo diseñado para dar de baja los datos de cierta mascota la cual pertenece
     // a cierto cliente.
     public void eliminarMascotaCliente(Cliente clienteBus, Mascota mascotaBus){
